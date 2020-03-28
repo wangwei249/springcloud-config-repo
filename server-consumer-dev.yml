@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: service-consumer
+  rabbitmq:
+    host: 192.168.116.12
+    port: 5672
+    username: guest
+    password: guest
+  #  是否启用springcloud config bus
+  cloud:
+    bus:
+      trace:
+        enabled: true
+
+#开启hystrix断路器
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 # 设置hystrix的超时时间为5000ms
+
+#暴漏刷新的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+logging:
+  level:
+    web: trace
+#服务端口
+server:
+  port: 9001
+
+# 注册中心地址
+eureka:
+  client:
+    fetch-registry: true
+    #这里是提供服务，需要注册到注册中心，设置为false时则不会向注册中心注册
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+word: wangwei-7

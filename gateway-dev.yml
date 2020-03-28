@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 10010
+zuul:
+  routes:
+    # 路由分组，转向微服务名称的分组
+    api-a:
+      path: /client/**
+      serviceId: SERVER-PROVIDER #client-test 对应的是注册中心的服务的名称
+    #服务分发的方式是这样的，我们通过localhost：10215/client访问，实际是将地址映射到了client-test这个服务的地址上
+
+    # 路由分组，转向传统ip端口的分组
+    api-b-url:
+      path: /caller/**
+      #由传统的路由模式，我们可以知道用户访问的路由路径为localhost:10215/caller，将服务映射到了http://localhost:10213
+      url: http://localhost:9001/
+    cy-url:
+      path: /cy/**
+      url: SERVICE-CY
+      # 传统转向（cy服务没有注册到eureka中心
+      # url: http://localhost:7080/testBoot/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
