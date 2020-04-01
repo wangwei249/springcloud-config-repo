@@ -2,7 +2,7 @@ spring:
   application:
     name: service-consumer
   rabbitmq:
-    host: 192.168.116.12
+    host: 192.168.116.11
     port: 5672
     username: guest
     password: guest
