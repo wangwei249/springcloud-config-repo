@@ -10,8 +10,8 @@ eureka:
     # 因为自己是注册中心，因此不用检索服务信息
     fetch-registry: false
     # 注册中心的地址
-    service-url:
-      defaultZone: http://192.168.116.11:8761/eureka
+    # service-url:
+    #  defaultZone: http://192.168.116.11:8761/eureka
   server:
     # 配置关闭自我保护，并按需配置Eureka Server清理无效节点的时间间隔（5000ms）。
     enable-self-preservation: false
